@@ -3,9 +3,12 @@ A prototype implementation of a rainbow table.
 
 A [Rainbow Table](https://en.wikipedia.org/wiki/Rainbow_table) is a data structure to improve efficency of using precomputed lookup tables to find the preimages of functions. In particular, rainbow tables are used to aid in reversing hash functions like SHA-1, MD5, etc... Rainbow tables are useful when we have a specific subset of values that we want to precompute our table over (i.e: 8 character alphanumeric string). The rainbow table has parameters that enable a user to choose their desired balance between storage of the table and lookup time within the table.
 
-<p align="center">
+<div align="center">
   <img alt="rainbow table" width="700" src="https://user-images.githubusercontent.com/6558567/159884413-d741f3d8-7d11-4728-b80d-4a6111e3186e.png">
-</p>
+  </br>
+  Fig.1 - A figure from the original paper on Rainbow Tables; Demonstrates the origin on the term 'Rainbow'
+  </br> </br>
+</div>
 
 This implementation is done in Python as a prototype. As such, it lacks many optimizations as well as the natural speed up of using a lower level language. However, this tradeoff was made for learning purposes as the main goal of implementing the rainbow table was to get a better understanding of the technique, rather than squeeze out optimal performance. It focuses on the MD5 hash but could easily be extended to any other hash function.
 
