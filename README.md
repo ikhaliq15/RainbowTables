@@ -20,3 +20,4 @@ Some goals for future work:
 * Add multiple chain generation phases to reduce merged chains from wasting time and space.
 * Add optimizations to reduction functions to decrease runtime.
 * Write the project in a lower level language such as Rust to try and push performance.
+* Write a full algorithmic description about how the rainbow table works for this README.
