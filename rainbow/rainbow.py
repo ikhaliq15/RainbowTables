@@ -1,11 +1,9 @@
-import string_helper
+from . import string_helper
 import hashlib
 import json
 import zlib
 
 class RainbowTable:
-	unique_preimages = set()
-
 	def __init__(self, preimage_length, alphabet, num_chains, chain_length):
 		self.table = dict()
 		self.preimage_length = preimage_length
@@ -18,14 +16,10 @@ class RainbowTable:
 	def generate(self):
 		assert len(self.table) == 0, 'Can only generate on a fresh rainbow table'
 		for _ in range(self.num_chains):
-			if _ % 100 == 0:
-				print(f"generated {_} chains")
 			base = string_helper.random_string(self.preimage_length, self.alphabet)
 			end_of_chain = self._end_of_chain(self.chain(base=base))
 			if end_of_chain is not None and end_of_chain not in self.table:
 				self.table[end_of_chain] = base
-		print(f"rainbow table contains {len(self.table)} chains")
-		print(f"generated {len(self.unique_preimages)} unique preimages")
 
 	def search(self, goal_hash):
 		for start_step in range(self.num_chains):
@@ -45,12 +39,10 @@ class RainbowTable:
 			else:
 				cur_pre, cur_hash = base, hashlib.md5(base.encode()).hexdigest()
 			yield cur_pre, cur_hash
-			self.unique_preimages.add(cur_pre)
 			for chain_step in range(start_step, self.chain_length):
 				cur_pre = self.reduction(cur_hash, chain_step)
 				cur_hash = hashlib.md5(cur_pre.encode()).hexdigest()
 				yield cur_pre, cur_hash
-				self.unique_preimages.add(cur_pre)
 
 	def _end_of_chain(self, chain):
 		last_pre = None
