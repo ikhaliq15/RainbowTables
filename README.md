@@ -1,4 +1,4 @@
-# RainbowTables
+# Rainbow Tables
 A prototype implementation of a rainbow table.
 
 A [Rainbow Table](https://en.wikipedia.org/wiki/Rainbow_table) is a data structure to improve efficency of using precomputed lookup tables to find the preimages of functions. In particular, rainbow tables are used to reverse hash functions like SHA-1, MD5, etc... Rainbow tables are useful when we have a specific subset of values that we want to precompute our table over (i.e: 8 character alphanumeric string). The rainbow table has parameters that enable a user to choose their desired balance between storage of the table and lookup time within the table.
